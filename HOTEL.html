@@ -63,6 +63,7 @@
                 var error=document.getElementById('error');
                 error.style.display='block';
                 tabContent.style.display='none';
+                document.getElementById('navbar').style.display='none';
                 var nam=document.getElementById("customerName").value;
                     var date=document.getElementById("checkinDate").value;
                     var days=document.getElementById("days").value;
@@ -99,13 +100,14 @@
                     billAmount=(delux*days+suite*days+ac*days+locker*days-advance);
                     }else billAmount=((delux*days+suite*days+ac*days+locker*days-advance)+(persons-2)*1000*days);
 
-                   
-                   if(nam==undefined || nam==''){error.innerHTML=(`Please enter name.<br><button onclick="ok()" class="btn btn-dark btn-sm">ok</button>`);}
-                   else if(date===undefined || date==''){error.innerHTML=(`Please add checkin date.<br><button onclick="ok()" class="btn btn-dark btn-sm">ok</button>`);}
-                   else if(days==undefined || days==''){error.innerHTML=(`Please add days.<br><button onclick="ok()" class="btn btn-dark btn-sm">ok</button>`);}
-                   else if(persons==undefined || persons==''){error.innerHTML=(`Please add total number of persons<br><button onclick="ok()" class="btn btn-dark btn-sm">ok</button>`)}
-                   else if(delux==0 && suite==0){error.innerHTML=(`Please select room type.<br><button onclick="ok()" class="btn btn-dark btn-sm">ok</button>`)}
-                   else if(advance < 500 || advance==undefined){error.innerHTML=(`Minimmum advance amount is Rs.500/-<br><button onclick="ok()" class="btn btn-dark btn-sm">ok</button>`);}
+                   var back='<br><button onclick="ok()" class="btn btn-dark btn-sm">ok</button>';
+
+                   if(nam==undefined || nam==''){error.innerHTML= (`Please enter name.`+back);}
+                   else if(date===undefined || date==''){error.innerHTML=(`Please add checkin date.`+back);}
+                   else if(days==undefined || days==''){error.innerHTML=(`Please add days.`+back);}
+                   else if(persons==undefined || persons==''){error.innerHTML=(`Please add total number of persons.`+back);}
+                   else if(delux==0 && suite==0){error.innerHTML=(`Please select room type.`+back);}
+                   else if(advance < 500 || advance==undefined){error.innerHTML=(`Minimmum advance amount is Rs.500/-.`+back);}
 
                    else{
                     error.style.display='none';
@@ -123,12 +125,13 @@
                 }
             function back(){
                 document.getElementById('tabContent').style.display='block';
-                document.getElementById('navbar').style.display='block';
                 document.getElementById('receipt').style.display='none';
+               document.getElementById('navbar').style.display='block';
             }
             function ok(){
                 document.getElementById('error').style.display='none';
                 document.getElementById('tabContent').style.display='block';
+                document.getElementById('navbar').style.display='block';
             }
 
     </script>
@@ -151,7 +154,7 @@
             position: absolute;
             display: none;
             top: 10%;
-           left:40%;
+            left:40%;
             text-align: center;
             width: fit-content;
             background-color: white;
@@ -188,8 +191,10 @@
         }
         select{
             display: none;
-            background-color: rgba(182, 216, 230, 0.4);
-            border-radius: 5px;
+            background-color: rgb(182, 216, 230);
+            border-radius: 4px;
+            height: 30px;
+            font-weight: bold;
         }
         #tabContent{
             background-color: lightblue;
@@ -215,13 +220,17 @@
             #customerInfo{
                 grid-template-columns: 12fr;
             }
+            #error{
+                left: 2.5%;
+                width: 95%;
+            }
         }
         @media  only screen and (max-width:200px) {
             #roomType,#amenities,.receipt{
             grid-template-columns: 12fr;
           } 
           #tabContent{
-            padding:0;
+            padding:0px;
             width: 100%;
           }
         }
@@ -239,7 +248,7 @@
             <button onclick="amenities()" id="btnAmenities">Select Amenities</button>
             <button onclick="advance()" id="btnAdvance">Advance Amount</button>
         </nav>
-        <select class="ms-1" onchange="selectChange()">
+        <select class="ms-2" onchange="selectChange()">
             <option value="btnCustomer">Customer Info</option>
             <option value="btnRoom">Select Room Type</option>
             <option value="btnAmenities">Select Amenities</option>
@@ -293,14 +302,14 @@
         <div id="receipt">
             <h4 class="mt-2 text-center text-primary bg-body-secondary p-1">Your Booking Details</h4>
             <div class="receipt ">
-                <p>Customer Name :&nbsp; </p> <p id="regname"></p>      
-                <p>Check in Date : &nbsp;</p> <p id="regdate"></p>
-                <p>Total No of Days : &nbsp;</p> <p id="regdays"></p>
-                <p>Total No of Persons : &nbsp;</p><p id="regpersons"></p>
-                <p>Room Type : &nbsp;</p><p id="regroom"></p>
-                <p>Amenities : &nbsp;</p><p id="regamenities"></p>
-                <p>Advance Amount : &nbsp;</p><p id="regadvance"></p>
-                <p>Balance amount : &nbsp;</p><p id="regbal"></p>
+                <p>Customer Name &nbsp; </p> <p id="regname"></p>      
+                <p>Check in Date  &nbsp;</p> <p id="regdate"></p>
+                <p>Total No of Days  &nbsp;</p> <p id="regdays"></p>
+                <p>Total No of Persons  &nbsp;</p><p id="regpersons"></p>
+                <p>Room Type  &nbsp;</p><p id="regroom"></p>
+                <p>Amenities  &nbsp;</p><p id="regamenities"></p>
+                <p>Advance Amount  &nbsp;</p><p id="regadvance"></p>
+                <p>Balance amount  &nbsp;</p><p id="regbal"></p>
             </div>
             <div class="mt-1 text-center"><button onclick="back()" class="btn btn-dark btn-sm border-4 border-warning">Back</button></div>
         </div>
