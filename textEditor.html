@@ -60,6 +60,9 @@
         }
     </script>
         <style>
+            body{
+                position: relative;
+            }
             dt,dd{
                 color: rgb(4, 57, 138);
             }
@@ -78,7 +81,7 @@
                 border-bottom-left-radius: 15px;
                 border-bottom-right-radius: 15px;
             }
-            h4{
+            h5{
                 border-bottom: 1px solid darkblue;}
             button{
                 margin-bottom: 4px;
@@ -94,17 +97,26 @@
             .sub-body{
                 padding: 5px;
                 display: grid;
-                grid-template-columns: 4fr 8fr;
+                grid-template-columns: 8fr 4fr;
             }
-            .design{
-                background-color: white;
-            }
-            
+            input[type='color']:hover,select:hover{
+            cursor: pointer;box-shadow: black 1px 1px 7px;
+           }
+           input[type='range']:hover{
+            cursor: pointer;
+           }
             #msg{
                 width: 100%;
+                border: none;
+                background-color: white;
+                color: black;
+                min-height: 25vh;
+                outline: 0;
             }
-            textarea{
-                min-height: 90vh;
+            .design{
+                position: sticky;
+                top: 0px;
+                background-color: white;
             }
             @media only screen and (max-width: 600px) {
                 .sub-body,.edit-tab{
@@ -113,20 +125,30 @@
               .sub-body,.design{
                 padding: 0px;
               }
+              .design{
+                border-bottom: 2px solid darkblue;}
+            }
+            @media only screen and (max-width:200px){
+               #msg{max-height: 50vh;}
+                .design{top: -60px;}
             }
         </style>
 </head>
 <body onload="loadBody()">
         <div class="sub-body text-center">
+            <div class="design">
+                <h5>Type your text below</h5>
+                <textarea id="msg"></textarea>
+            </div>
            <div class="tab1">
-            <h4>Text Editor</h4>
+            <h5>Text Editor</h5>
             <dl class="edit-tab">
                 <dt>Choose font color</dt>
                 <dd><input type="color" oninput="txtColor()" id="txtColor"></dd>
                 <dt>Choose shadow color</dt>
                 <dd><input type="color" id="shadowColor" oninput="shadowColor()"></dd>
                 <dt>Set size</dt>
-                <dd><input id="size" id="txtSize" value="0" oninput="txtSize()" min="10" max="200" type="range"></dd>
+                <dd><input id="size" id="txtSize" value="0" oninput="txtSize()" min="17" max="70" type="range"></dd>
                 <dt>Set vertical shadow</dt>
                 <dd><input type="range" value="0" min="0" max="10" id="verticalShadow" oninput="verticalShadow()"></dd>
                 <dt>Set horizontal shadow</dt>
@@ -143,10 +165,6 @@
                 </dd>
             </dl>
           </div> 
-            <div class="design">
-                <h5>Type yor text below</h5>
-                <textarea id="msg"></textarea>
-            </div>
         </div>
 </body>
 </html>
