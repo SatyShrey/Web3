@@ -5,136 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <script>
-        function bodyLoad(){
-            customer();
-            document.getElementById('receipt').style.display='none';
-        }
-        function tabs(btn){
-            document.getElementById("customerInfo").style.display="none";
-            document.getElementById("roomType").style.display="none";
-            document.getElementById("amenities").style.display="none";
-            document.getElementById("advance").style.display="none";
-            document.getElementById("btnCustomer").style.backgroundColor="rgba(173, 216, 230,0.3)";
-            document.getElementById("btnRoom").style.backgroundColor="rgba(173, 216, 230,0.3)";
-            document.getElementById("btnAmenities").style.backgroundColor="rgba(173, 216, 230,0.3)";
-            document.getElementById("btnAdvance").style.backgroundColor="rgba(173, 216, 230,0.3)";
-            document.getElementById(btn).style.backgroundColor="lightblue";
-        }
-        function customer(){
-            tabs("btnCustomer");
-            document.getElementById("customerInfo").style.display="grid";
-        }
-        function room(){
-            tabs("btnRoom");
-            document.getElementById("roomType").style.display="grid";
-        }
-        function amenities(){
-            tabs("btnAmenities");
-            document.getElementById("amenities").style.display="grid";
-        }
-        function advance(){
-            tabs("btnAdvance");
-            document.getElementById("advance").style.display="block";
-        }
-
-        function selectChange(){
-            if(document.querySelector('select').value=='btnRoom'){
-                tabs("btnRoom");
-                document.getElementById("roomType").style.display="grid";
-            }
-            if(document.querySelector('select').value=='btnCustomer'){
-                tabs("btnCustomer");
-                document.getElementById("customerInfo").style.display="grid";
-            }
-            if(document.querySelector('select').value=='btnAmenities'){
-                tabs("btnAmenities");
-                document.getElementById("amenities").style.display="grid";
-            }
-            if(document.querySelector('select').value=='btnAdvance'){
-                tabs("btnAdvance");
-                document.getElementById("advance").style.display="block";
-            }
-        }    
-                    
-
-            function register(){
-                var tabContent= document.getElementById('tabContent');
-                var error=document.getElementById('error');
-                error.style.display='block';
-                tabContent.style.display='none';
-                document.getElementById('navbar').style.display='none';
-                var nam=document.getElementById("customerName").value;
-                    var date=document.getElementById("checkinDate").value;
-                    var days=document.getElementById("days").value;
-                    var persons=document.getElementById("totalPerson").value;
-                    var advance=document.getElementById('adv').value;
-                    var delux;var suite;var ac;var locker;
-                    var billAmount;var amenities;var room;
-
-                    if(document.getElementById("delux").checked==true){
-                        delux=2500;
-                    }else{delux=0;}
-
-                    if(document.getElementById("suite").checked==true){
-                        suite =4000;
-                    }else{suite=0;}
-
-                    if(document.getElementById("ac").checked==true){
-                        ac=1000;
-                    }else{ac=0;}
-
-                    if(document.getElementById("locker").checked==true){
-                        locker=300;
-                    }else{locker=0;}
-
-                    if(delux==2500){room='Delux'}
-                    else{room='Suite'}
-
-                    if(ac==1000 && locker==300){amenities='AC and Locker';}
-                    else if(ac==1000){amenities='AC';}
-                    else if(locker==300){amenities='Locker'}
-                    else{amenities='<i class="text-danger">not selected...</i>'}
-
-                    if(persons==1 || persons==2){
-                    billAmount=(delux*days+suite*days+ac*days+locker*days-advance);
-                    }else billAmount=((delux*days+suite*days+ac*days+locker*days-advance)+(persons-2)*1000*days);
-
-                   var back='<br><button onclick="ok()" class="btn btn-dark btn-sm">ok</button>';
-
-                   if(nam==undefined || nam==''){error.innerHTML= (`Please enter name.`+back);}
-                   else if(date===undefined || date==''){error.innerHTML=(`Please add checkin date.`+back);}
-                   else if(days==undefined || days==''){error.innerHTML=(`Please add days.`+back);}
-                   else if(persons==undefined || persons==''){error.innerHTML=(`Please add total number of persons.`+back);}
-                   else if(delux==0 && suite==0){error.innerHTML=(`Please select room type.`+back);}
-                   else if(advance < 500 || advance==undefined){error.innerHTML=(`Minimmum advance amount is Rs.500/-.`+back);}
-
-                   else{
-                    error.style.display='none';
-                    document.getElementById('receipt').style.display='block';
-                    document.getElementById('tabContent').style.display="none";
-                    document.getElementById('navbar').style.display="none";
-                    document.getElementById("regname").innerText=nam;
-                    document.getElementById("regdate").innerHTML=date;
-                    document.getElementById("regdays").innerHTML=days;
-                    document.getElementById("regpersons").innerHTML=persons;
-                    document.getElementById("regroom").innerText=room;
-                    document.getElementById("regamenities").innerHTML=amenities;
-                    document.getElementById("regadvance").innerText=advance;
-                    document.getElementById("regbal").innerText=billAmount;}
-                }
-            function back(){
-                document.getElementById('tabContent').style.display='block';
-                document.getElementById('receipt').style.display='none';
-               document.getElementById('navbar').style.display='block';
-            }
-            function ok(){
-                document.getElementById('error').style.display='none';
-                document.getElementById('tabContent').style.display='block';
-                document.getElementById('navbar').style.display='block';
-            }
-
-    </script>
 
     <style>
         body{
@@ -142,19 +12,52 @@
             background-image: url('https://cdn.pixabay.com/photo/2016/10/13/09/06/travel-1737168_1280.jpg');
             background-size: cover;
         }
+        input::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+        }
         .sub-body{
             background-color: rgba(0,0,0,0.5);
-            height: 100vh;
+            background-size: cover;
         }
         .heading{
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             background-color: black;
+            margin: auto;
+        }
+        h4{
+            background-color: black;
+            width: 50%;
+            margin: auto;
+            padding: 3px;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        h5{
+            margin: auto;width: fit-content;
+            background-color: white;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+         }
+        #advance{
+            div{
+                border: 1px solid gray;
+                border-radius: 5px;
+                background-color: white;
+                width: fit-content;
+                margin: auto;
+            }
+            input{
+                border: none;
+                outline: 0;
+                background-color: transparent;
+            }
         }
         #error{
-            position: absolute;
+            position:fixed;
             display: none;
             top: 10%;
-            left:40%;
+            left:45%;
             text-align: center;
             width: fit-content;
             background-color: white;
@@ -164,76 +67,106 @@
             border-radius: 4px;
             box-shadow:black 10px 10px 25px;
         }
-        nav button{
-            border: none;
-            background-color:lightblue;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            height: 40px;
-            font-weight: bold;
+        #d-shade{
+            position:fixed;
+            top: 0px;
+            left: 0px;
+            background-color:rgb(0,0,0,0.5);
+            height: 100vh;
+            width: 100%;
+            display: none;
         }
+        
         #roomType,#amenities,#customerInfo,.receipt{
+            display: grid;
             grid-template-columns: 6fr 6fr;
             margin: auto;
-            min-height: 25vh;
             font-family: Verdana;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 3%;
         }
-        #advance{
-            min-height: 25vh;
-        }
+            #customerInfo input:hover,img:hover,.ok:hover,.register:hover,#advance div:hover{
+                box-shadow: black 1px 1px 7px;
+            }
+            .back:hover{
+                box-shadow: white 1px 1px 7px;
+            }
+            
         .receipt{
             display: grid;
             width: fit-content;
-            border: 3px solid black;
             padding: 20px;
             background-color: white;
             font-family: monospace;
-        }
-        select{
-            display: none;
-            background-color: rgb(182, 216, 230);
-            border-radius: 4px;
-            height: 30px;
-            font-weight: bold;
+            border: none;
         }
         #tabContent{
             background-color: lightblue;
-            padding:20px;
+            padding:10px;
             width: fit-content;
-            border-radius: 7px;
             margin: auto;
-            border: 5px solid black;
-            border-top: 0px;
+            border: 3px solid black;
+            border-bottom-left-radius:10px ;
+            border-bottom-right-radius:10px;
+            border-top: 0;
+            max-height: 93.4vh;
+            overflow-y: scroll;
+            scrollbar-width: none;
         }
         input{
             border-radius: 5px;
+            height: 31px;
+            background-color: white;
+            border: 1px solid gray;
+            width: 90%;
         }
+        
+        img{
+            border-radius: 5px;
+        }
+        #roomType,#amenities{
+            img,input{
+                cursor: pointer;
+            }
+            input{
+            width: 20px;height: 20px;
+        }
+        }
+        
 
         @media  only screen and (max-width:600px) {
             
-            nav{
-                display: none;
-            }
-            select{
-                display: block;
-            }
-            #customerInfo{
-                grid-template-columns: 12fr;
-            }
+          #tabContent{
+            border: none;
+            max-height: fit-content;
+          }
+          
             #error{
                 left: 2.5%;
                 width: 95%;
             }
+            
+            #customerInfo{
+                grid-template-columns: 12fr;
+            }
+            .receipt,h5{
+                width: 100%;
+                border-radius: 0px;
+                border-bottom: 1px solid black;
+            }
         }
         @media  only screen and (max-width:200px) {
-            #roomType,#amenities,.receipt{
+            #tabContent,#roomType,#amenities,#customerInfo,.receipt{
             grid-template-columns: 12fr;
-          } 
-          #tabContent{
-            padding:0px;
-            width: 100%;
+            padding: 0;
+          }
+          h4{
+           min-width: 90%;
           }
         }
+        
     </style>
 
 </head>
@@ -241,66 +174,56 @@
        <header>
             <h1 class="text-primary heading">Hotel Booking</h1>
        </header>
-    <div id="navbar">
-        <nav class="tabs">
-            <button onclick="customer()" id="btnCustomer" >Customer Info</button>
-            <button onclick="room()" id="btnRoom" >Select Room Type</button>
-            <button onclick="amenities()" id="btnAmenities">Select Amenities</button>
-            <button onclick="advance()" id="btnAdvance">Advance Amount</button>
-        </nav>
-        <select class="ms-2" onchange="selectChange()">
-            <option value="btnCustomer">Customer Info</option>
-            <option value="btnRoom">Select Room Type</option>
-            <option value="btnAmenities">Select Amenities</option>
-            <option value="btnAdvance">Advance Amount</option>
-        </select>
-    </div>
     <div id="tabContent">
-        <div id="customerInfo">
-            <label>Customer Name</label><span><input id="customerName" type="text"></span>
-            <label>Check in Date</label><span><input id="checkinDate"  type="date"></span>
-            <label>Total no. of Days</label><span><input id="days" min="1"  type="number"></span>
-            <label>Total no. of Persons</label><span><input id="totalPerson" min="1" type="number"></span>
-        </div>
-       
-        <div id="roomType">
-            <div>
-                <img src="https://i.pinimg.com/564x/80/0a/f0/800af0101b474de67b3d36ea7cac4711.jpg" width="100"><br>
-                <input  name="roomtype" id="delux" type="radio"><label for="delux">Delux Room</label><br>
-                <p>&#8377;2500/-</p>
+        <div><h4>Customer Details</h4>
+            <div id="customerInfo">
+                <div><label>Customer Name</label><br><input id="customerName"  type="text"></div>
+                <div><label>Check in Date</label><br><input id="checkinDate" type="date"></div>
+                <div><label>Total no. of Days</label><br><input id="days" min="1"  type="number"></div>
+                <div><label>Total no. of Persons</label><br><input id="totalPerson" min="1" type="number"></div>
             </div>
-            <div >
-                <img src="https://i.pinimg.com/564x/ba/7e/98/ba7e98c8639368290a57a7b9a6f73694.jpg" width="100"><br>
-                <input name="roomtype" id="suite"  type="radio"><label for="suite">Suite Room</label><br>
-                <p>&#8377;4000/-</p>
-            </div> 
+        </div>
+        <p class="text-danger m-1">Note: Upto 2 people cost no change for every extra person extra Rs.1000 per day per person.</p>
+       
+        <div><h4>Room Types</h4>
+            <div id="roomType">
+                <div>
+                    <img onclick="deluxRoom()" src="https://i.pinimg.com/564x/80/0a/f0/800af0101b474de67b3d36ea7cac4711.jpg" width="100"><br>
+                    <input name="roomtype" id="delux" type="radio"><label for="delux">Delux Room</label><br>
+                    <p>&#8377;2500/-</p>
+                </div>
+                <div>
+                    <img onclick="suiteRoom()" src="https://i.pinimg.com/564x/ba/7e/98/ba7e98c8639368290a57a7b9a6f73694.jpg" width="100"><br>
+                    <input name="roomtype" id="suite"  type="radio"><label for="suite">Suite Room</label><br>
+                    <p>&#8377;4000/-</p>
+                </div> 
+            </div>
         </div>
     
-        <div id="amenities">
-            <div >
-                <img src="https://i.pinimg.com/564x/dc/ab/25/dcab25c791d291c58e1cc01808850fd7.jpg" width="100"><br>
-                <input name="ac" id="ac" type="checkbox"><label for="ac">A/C</label><br>
-                <p>&#8377;1000/-</p>
-            </div>
-            <div>
-                <img src="https://i.pinimg.com/564x/36/48/d9/3648d9f8d6a1643dca8a21910ddf90dc.jpg" width="100"><br>
-                <input name="locker" id="locker"  type="checkbox"><label for="locker">Locker</label><br>
-                <p>&#8377;300/-</p>
+        <div><h4>Amenities</h4>
+            <div id="amenities">
+                <div>
+                    <img onclick="AC()" src="https://i.pinimg.com/564x/dc/ab/25/dcab25c791d291c58e1cc01808850fd7.jpg" width="100"><br>
+                    <input name="ac" id="ac"  type="checkbox"><label for="ac">A/C</label><br>
+                    <p>&#8377;1000/-</p>
+                </div>
+                <div>
+                    <img onclick="LOCKER()" src="https://i.pinimg.com/564x/36/48/d9/3648d9f8d6a1643dca8a21910ddf90dc.jpg" width="100"><br>
+                    <input name="locker" id="locker" type="checkbox"><label for="locker">Locker</label><br>
+                    <p>&#8377;300/-</p>
+                </div>
             </div>
         </div>
             
         <div id="advance" >
-           <label class="m-1">Advance Amount</label><input min="0" id="adv" type="number">
+           <label class="m-1">Advance Amount</label><div>&#8377;<input min="0" id="adv" type="number"></div>
            <p class="text-danger">*Advance is mandatory. Minimmum advance amount Rs.500/-.</p>
-           <button class="btn btn-primary m-1" onclick="register()">Register</button>
+           <button class="btn btn-primary register m-1" onclick="register()">Register</button>
         </div>
-          <div>
-            <p class="text-danger m-1">Note: Upto 2 people cost no change for every extra person extra Rs.1000 per day per person.</p>
-          </div>
        </div>
     
         <div id="receipt">
-            <h4 class="mt-2 text-center text-primary bg-body-secondary p-1">Your Booking Details</h4>
+            <h5 class="mt-2 text-center text-primary p-1">Your Booking Details</h5>
             <div class="receipt ">
                 <p>Customer Name &nbsp; </p> <p id="regname"></p>      
                 <p>Check in Date  &nbsp;</p> <p id="regdate"></p>
@@ -311,9 +234,124 @@
                 <p>Advance Amount  &nbsp;</p><p id="regadvance"></p>
                 <p>Balance amount  &nbsp;</p><p id="regbal"></p>
             </div>
-            <div class="mt-1 text-center"><button onclick="back()" class="btn btn-dark btn-sm border-4 border-warning">Back</button></div>
+            <div class="mt-1 text-center"><button onclick="back()" class="btn btn-dark btn-sm border-1 border-light back mb-3">Back</button></div>
         </div>
     </div>
+    <div id="d-shade"></div>
     <div id="error"></div>
-</div></body>
+</div>
+<script>
+    var input=document.querySelectorAll('input');
+    for(var i=0;i<input.length;i++){
+   input[i].setAttribute('class',"cls"+i);
+   input[i].addEventListener("keypress", function(event) {
+   if (event.key === "Enter") {
+    event.preventDefault();
+    var num=parseInt((event.target.className).substr(3))+1;
+    if(document.querySelector('.cls'+num)){
+    document.querySelector('.cls'+num).focus();}
+    if(num===input.length){document.querySelector('.register').focus();}
+   }
+  });
+ }
+    
+    function bodyLoad(){
+        document.getElementById('receipt').style.display='none';
+    }
+                
+
+        function register(){
+            var tabContent= document.getElementById('tabContent');
+            var error=document.getElementById('error');
+            error.style.display='block';
+            document.getElementById('d-shade').style.display="block";
+            var nam=document.getElementById("customerName").value;
+                var dateStr=document.getElementById("checkinDate").value;
+                var day=dateStr.split('-')[2];var month=dateStr.split('-')[1];var year=dateStr.split('-')[0];
+                var date=day+'/'+month+'/'+year;
+                var days=document.getElementById("days").value;
+                var persons=document.getElementById("totalPerson").value;
+                var advance=document.getElementById('adv').value;
+                var delux;var suite;var ac;var locker;
+                var billAmount;var amenities;var room;
+
+                if(document.getElementById("delux").checked==true){
+                    delux=2500;
+                }else{delux=0;}
+
+                if(document.getElementById("suite").checked==true){
+                    suite =4000;
+                }else{suite=0;}
+
+                if(document.getElementById("ac").checked==true){
+                    ac=1000;
+                }else{ac=0;}
+
+                if(document.getElementById("locker").checked==true){
+                    locker=300;
+                }else{locker=0;}
+
+                if(delux==2500){room='Delux'}
+                else{room='Suite'}
+
+                if(ac==1000 && locker==300){amenities='AC and Locker';}
+                else if(ac==1000){amenities='AC';}
+                else if(locker==300){amenities='Locker'}
+                else{amenities='<i class="text-danger">not selected...</i>'}
+
+                if(persons==1 || persons==2){
+                billAmount=(delux*days+suite*days+ac*days+locker*days-advance);
+                }else billAmount=((delux*days+suite*days+ac*days+locker*days-advance)+(persons-2)*1000*days);
+
+               var back='<br><button onclick="ok()" class="btn btn-dark btn-sm ok">ok</button>';
+
+               if(nam==undefined || nam==''){error.innerHTML= (`Please enter name.`+back);}
+               else if(date===undefined || date==''){error.innerHTML=(`Please add checkin date.`+back);}
+               else if(days==undefined || days==''){error.innerHTML=(`Please add days.`+back);}
+               else if(persons==undefined || persons==''){error.innerHTML=(`Please add total number of persons.`+back);}
+               else if(delux==0 && suite==0){error.innerHTML=(`Please select room type.`+back);}
+               else if(advance < 500 || advance==undefined){error.innerHTML=(`Minimmum advance amount is Rs.500/-.`+back);}
+
+               else{
+                error.style.display='none';
+                document.getElementById('d-shade').style.display="none";
+                document.getElementById('receipt').style.display='block';
+                document.getElementById('tabContent').style.display="none";
+                document.getElementById("regname").innerText=nam;
+                document.getElementById("regdate").innerHTML=date;
+                document.getElementById("regdays").innerHTML=days;
+                document.getElementById("regpersons").innerHTML=persons;
+                document.getElementById("regroom").innerText=room;
+                document.getElementById("regamenities").innerHTML=amenities;
+                document.getElementById("regadvance").innerText=advance;
+                document.getElementById("regbal").innerText=billAmount;}
+            }
+        function back(){
+            document.getElementById('tabContent').style.display='block';
+            document.getElementById('receipt').style.display='none';
+        }
+        function ok(){
+            document.getElementById('error').style.display='none';
+            document.getElementById('tabContent').style.display='block';
+            document.getElementById('d-shade').style.display="none";
+        }
+
+
+        function suiteRoom(){
+            document.getElementById("suite").checked=true;
+        }
+        function deluxRoom(){
+            document.getElementById("delux").checked=true;
+        }
+        function AC(){
+            var aC=document.getElementById("ac");
+            if(aC.checked==true){aC.checked=false}else{aC.checked=true}
+        }
+        function LOCKER(){
+            var lockeR=document.getElementById("locker");
+            if(lockeR.checked==true){lockeR.checked=false}else{lockeR.checked=true}
+        }
+
+</script>
+</body>
 </html>
